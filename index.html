@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>crownandchrono.com</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://chrownandchrono.com/"><link rel="alternate" type="application/atom+xml" href="https://chrownandchrono.com/feed.xml"><link rel="alternate" type="application/json" href="https://chrownandchrono.com/feed.json"><meta property="og:title" content="crownandchrono.com"><meta property="og:site_name" content="crownandchrono.com"><meta property="og:description" content=""><meta property="og:url" content="https://chrownandchrono.com/"><meta property="og:type" content="website"><link rel="stylesheet" href="https://chrownandchrono.com/assets/css/style.css?v=7481e241a067a533a35b659302b5203e"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","name":"crownandchrono.com","url":"https://chrownandchrono.com/"}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body><div class="site-container"><header class="top" id="js-header"><div class="top__inner" id="js-post__progress"><a class="logo" href="https://chrownandchrono.com/">crownandchrono.com</a></div></header><main class="main main--splitted"><div class="section featured"><div class="featured__slider"><div class="featured__viewport" aria-roledescription="carousel" aria-label="featuredPosts"><div class="featured__container" aria-live="off"></div></div><div class="featured__progress" aria-hidden="true"><div class="featured__progress__bar"></div></div><div class="featured__counter" aria-hidden="true"><span class="featured__counter__current">1</span> <span class="featured__counter__divider">/</span> <span class="featured__counter__total">-</span></div></div></div><div class="main__left main--splitted__left"><h2 class="main__heading">News</h2></div><div class="main__right"></div></main><footer class="footer"><div class="footer__top"><a class="logo footer__logo" href="https://chrownandchrono.com/">crownandchrono.com</a></div><div class="footer__bottom"><div class="footer__copyright">Powered by Publii</div></div></footer></div><script defer="defer" src="https://chrownandchrono.com/assets/js/scripts.min.js?v=01200278524b74ccf3210b7882b81e59"></script><script>window.publiiThemeMenuConfig = { mobileMenuMode: 'sidebar', animationSpeed: 300, submenuWidth: 'auto', doubleClickTime: 500, mobileMenuExpandableSubmenus: true, relatedContainerForOverlayMenuSelector: '.navbar', };</script><script>var images = document.querySelectorAll('img[loading]');
+      for (var i = 0; i < images.length; i++) {
+         if (images[i].complete) {
+            images[i].classList.add('is-loaded');
+            images[i].parentNode.classList.remove('is-img-loading');
+            images[i].parentNode.parentNode.classList.remove('is-img-loading');
+         } else {
+            images[i].addEventListener('load', function () {
+               this.classList.add('is-loaded');
+               this.parentNode.classList.remove('is-img-loading');
+               this.parentNode.parentNode.classList.remove('is-img-loading');
+            }, false);
+         }
+      }</script><script src="https://chrownandchrono.com/assets/js/embla-carousel.umd.js?v=f893797e9ada2ab14b385ca0f05b4d4e"></script><script>// autoplay
+               const autoplay = (embla, interval) => {
+                  let timer = 0;
+                  const play = () => {
+                     stop();
+                     requestAnimationFrame(() => (timer = window.setTimeout(next, interval)));
+                  };
+                  const stop = () => {
+                     window.clearTimeout(timer);
+                     timer = 0;
+                  };
+                  const next = () => {
+                     if (embla.canScrollNext()) {
+                        embla.scrollNext();
+                     } else {
+                        embla.scrollTo(0);
+                     }
+                     play();
+                  };
+                  return {
+                     play,
+                     stop
+                  };
+               };
+            
+            // main 
+            const wrap = document.querySelector(".featured__slider");
+            const viewPort = wrap.querySelector(".featured__viewport");
+            const embla = EmblaCarousel(viewPort, {
+               loop: false,
+               speed: 6,
+               draggable: true,
+               dragFree: false,
+               containScroll: "trimSnaps"
+            });
+            const autoplayer = autoplay(embla, 6000);
+
+            embla.on("pointerUp", autoplayer.play);
+            embla.on("init", autoplayer.play);
+      
+            // progress bar
+               const progressBar = document.querySelector(".featured__progress__bar");
+               const updateProgressBar = (progressBar, embla) => () => {
+               const progress = Math.max(0, Math.min(1, embla.scrollProgress()));
+                  progressBar.style.transform = `translateX(${progress * 100}%)`;
+               };    
+               const updateProgress = updateProgressBar(progressBar, embla);
+               embla.on("scroll", updateProgress);
+
+         // current and total slides
+               const counterCurrent = document.querySelector('.featured__counter__current')
+               const counterTotal = document.querySelector('.featured__counter__total')
+               counterTotal.innerText = embla.scrollSnapList().length
+               embla.on('select', () => {
+                  counterCurrent.innerText = embla.selectedScrollSnap() + 1
+               })</script></body></html>

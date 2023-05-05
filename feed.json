@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "crownandchrono.com",
+    "description": "",
+    "home_page_url": "https://chrownandchrono.com",
+    "feed_url": "https://chrownandchrono.com/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "Benjamin McDaniel"
+    },
+    "items": [
+    ]
+}
