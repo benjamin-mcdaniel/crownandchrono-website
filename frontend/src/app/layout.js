@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
