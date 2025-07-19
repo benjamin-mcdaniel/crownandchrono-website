@@ -1,0 +1,187 @@
+/* Enhanced Debug CSS with better visibility and labels */
+
+/* Site header - Red */
+.site-header {
+  border: 5px solid #ff0000 !important;
+  position: relative;
+}
+.site-header::before {
+  content: "HEADER";
+  background: #ff0000;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Main element - Cyan */
+main {
+  border: 5px solid #00ffff !important;
+  position: relative;
+}
+main::before {
+  content: "MAIN";
+  background: #00ffff;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Main page container - Blue */
+.page {
+  border: 5px solid #0000ff !important;
+  position: relative;
+}
+.page::before {
+  content: "PAGE";
+  background: #0000ff;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Main content area - Green */
+.main {
+  border: 5px solid #00ff00 !important;
+  position: relative;
+}
+.main::before {
+  content: "MAIN CLASS";
+  background: #00ff00;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Blog post container - Magenta */
+.blog-post {
+  border: 5px solid #ff00ff !important;
+  position: relative;
+}
+.blog-post::before {
+  content: "BLOG POST";
+  background: #ff00ff;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Hero wrapper - Purple */
+.post-hero-wrapper {
+  border: 5px solid #800080 !important;
+  position: relative;
+}
+.post-hero-wrapper::before {
+  content: "HERO WRAPPER";
+  background: #800080;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Hero content - Orange */
+.post-hero {
+  border: 5px solid #ffa500 !important;
+  position: relative;
+}
+.post-hero::before {
+  content: "HERO CONTENT";
+  background: #ffa500;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Article content - Yellow */
+.post-content {
+  border: 5px solid #ffff00 !important;
+  position: relative;
+}
+.post-content::before {
+  content: "POST CONTENT";
+  background: #ffff00;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Blog layout (content + sidebar) - Teal */
+.blog-layout {
+  border: 5px solid #008080 !important;
+  position: relative;
+}
+.blog-layout::before {
+  content: "BLOG LAYOUT";
+  background: #008080;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Sidebar - Pink */
+.blog-sidebar {
+  border: 5px solid #ff69b4 !important;
+  position: relative;
+}
+.blog-sidebar::before {
+  content: "SIDEBAR";
+  background: #ff69b4;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Footer - Brown */
+footer {
+  border: 5px solid #a52a2a !important;
+  position: relative;
+}
+footer::before {
+  content: "FOOTER";
+  background: #a52a2a;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+/* Body - Olive */
+body {
+  border: 5px solid #808000 !important;
+}
+
+/* Container - Dark Gray */
+.container {
+  border: 1px dashed #444 !important;
+}

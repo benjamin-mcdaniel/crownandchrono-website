@@ -1,0 +1,46 @@
+/* Debug CSS to highlight page sections */
+
+/* Site header - Red */
+.site-header {
+  border: 3px solid #ff0000 !important;
+}
+
+/* Main page container - Blue */
+.page {
+  border: 3px solid #0000ff !important;
+}
+
+/* Main content area - Green */
+.main {
+  border: 3px solid #00ff00 !important;
+}
+
+/* Hero wrapper - Purple */
+.post-hero-wrapper {
+  border: 3px solid #800080 !important;
+}
+
+/* Hero content - Orange */
+.post-hero {
+  border: 3px solid #ffa500 !important;
+}
+
+/* Article content - Yellow */
+.post-content {
+  border: 3px solid #ffff00 !important;
+}
+
+/* Blog layout (content + sidebar) - Teal */
+.blog-layout {
+  border: 3px solid #008080 !important;
+}
+
+/* Sidebar - Pink */
+.blog-sidebar {
+  border: 3px solid #ff69b4 !important;
+}
+
+/* Footer - Brown */
+footer {
+  border: 3px solid #a52a2a !important;
+}
