@@ -27,7 +27,13 @@ export default function Home() {
                 <div key={post.slug} className="post-card">
                   {post.frontmatter.image && (
                     <div className="post-image">
-                      <img src={post.frontmatter.image.startsWith('/') ? post.frontmatter.image : `/${post.frontmatter.image}`} alt={post.frontmatter.title} />
+                      <Link href={`/${post.slug}`}>
+                        <img 
+                          src={post.frontmatter.image.startsWith('/') ? post.frontmatter.image : `/${post.frontmatter.image}`} 
+                          alt={post.frontmatter.title} 
+                          style={{ cursor: 'pointer' }}
+                        />
+                      </Link>
                     </div>
                   )}
                   <div className="post-content">

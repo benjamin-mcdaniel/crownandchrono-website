@@ -1,12 +1,64 @@
 import { getBlogPostBySlug, getAllBlogSlugs, getBlogPostsByTag } from '@/utils/blog';
+import { getEditorForArticle } from '@/utils/editors';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import styles from '../page.module.css';
+import EditorBio from '../components/EditorBio';
 
 // Generate static paths for all blog posts
 export function generateStaticParams() {
   const allSlugs = getAllBlogSlugs();
   return allSlugs.map(({ params }) => params);
+}
+
+// Generate metadata for each blog post
+export async function generateMetadata({ params }) {
+  // Properly await the params object before destructuring
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
+  const post = getBlogPostBySlug(slug);
+  
+  if (!post) return { title: 'Post Not Found | Crown and Chrono' };
+  
+  // Determine featured image URL
+  const imageUrl = post.frontmatter.image ? 
+    `https://crownandchrono.com${post.frontmatter.image.startsWith('/') ? post.frontmatter.image : `/${post.frontmatter.image}`}` : 
+    'https://crownandchrono.com/images/og-default.jpg';
+  
+  const description = post.excerpt || post.frontmatter.description || `Read about ${post.frontmatter.title} on Crown and Chrono`;
+  
+  return {
+    title: `${post.frontmatter.title} | Crown and Chrono`,
+    description,
+    keywords: post.frontmatter.tags?.join(', ') || 'watches, luxury watches',
+    alternates: {
+      canonical: `https://crownandchrono.com/${slug}`,
+    },
+    openGraph: {
+      title: post.frontmatter.title,
+      description,
+      type: 'article',
+      publishedTime: post.frontmatter.date,
+      modifiedTime: post.frontmatter.lastModified || post.frontmatter.date,
+      authors: post.frontmatter.author ? [post.frontmatter.author] : ['Crown and Chrono'],
+      tags: post.frontmatter.tags || [],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.frontmatter.title,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.frontmatter.title,
+      description,
+      images: [imageUrl],
+      creator: post.frontmatter.author ? `@${post.frontmatter.author.replace(/\s+/g, '')}` : '@crownandchrono',
+    },
+  };
 }
 
 export default async function BlogPost({ params }) {
@@ -23,14 +75,51 @@ export default async function BlogPost({ params }) {
     content: '# This post could not be found'
   };
   
+  // Get the appropriate editor for this article
+  const editor = getEditorForArticle(post.frontmatter);
+  
   // Get related posts for sidebar (by matching tags)
   const relatedPosts = post.frontmatter.tags && post.frontmatter.tags.length > 0 ?
     getBlogPostsByTag(post.frontmatter.tags[0])
       .filter(related => related.slug !== slug)
       .slice(0, 3) : [];
+      
+  // Create structured data for the blog post (JSON-LD)
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    'headline': post.frontmatter.title,
+    'datePublished': post.frontmatter.date,
+    'dateModified': post.frontmatter.lastModified || post.frontmatter.date,
+    'author': {
+      '@type': 'Person',
+      'name': editor ? editor.name : (post.frontmatter.author || 'Crown and Chrono'),
+      'description': editor ? editor.title : undefined,
+      'jobTitle': editor ? editor.title : undefined
+    },
+    'image': post.frontmatter.image ? `https://crownandchrono.com${post.frontmatter.image.startsWith('/') ? post.frontmatter.image : `/${post.frontmatter.image}`}` : undefined,
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Crown and Chrono',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': 'https://crownandchrono.com/logo.png'
+      }
+    },
+    'description': post.excerpt || post.frontmatter.description,
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `https://crownandchrono.com/${slug}`
+    }
+  };
 
   return (
     <div className={styles.page}>
+      {/* Add JSON-LD structured data script */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <main className={styles.main}>
         <article className="blog-post">
           {post.frontmatter.image ? (
@@ -93,6 +182,13 @@ export default async function BlogPost({ params }) {
               <ReactMarkdown>
                 {post.content}
               </ReactMarkdown>
+              
+              {/* Display the editor bio */}
+              {editor && (
+                <div className="editor-section">
+                  <EditorBio editor={editor} />
+                </div>
+              )}
               
               <footer className="post-footer">
                 <Link href="/" className="back-link">

@@ -1,0 +1,68 @@
+.editorBioContainer {
+  display: flex;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #0066cc;
+}
+
+.editorImageWrapper {
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.editorImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.editorInitials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #0066cc;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.editorInfo {
+  flex-grow: 1;
+}
+
+.editorName {
+  margin: 0 0 0.3rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.editorTitle {
+  margin: 0 0 0.8rem;
+  font-size: 0.9rem;
+  color: #0066cc;
+  font-weight: 500;
+}
+
+.editorBio {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+@media (max-width: 640px) {
+  .editorBioContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .editorImageWrapper {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}

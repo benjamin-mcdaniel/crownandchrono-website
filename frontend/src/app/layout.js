@@ -14,6 +14,27 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Crown and Chrono",
   description: "Watch Reviews, History, and Commentary",
+  openGraph: {
+    type: 'website',
+    siteName: 'Crown and Chrono',
+    title: 'Crown and Chrono',
+    description: 'Watch Reviews, History, and Commentary',
+    images: [
+      {
+        url: 'https://crownandchrono.com/images/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Crown and Chrono',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Crown and Chrono',
+    description: 'Watch Reviews, History, and Commentary',
+    images: ['https://crownandchrono.com/images/og-default.jpg'],
+    creator: '@crownandchrono',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,19 +42,23 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="canonical" href="https://crownandchrono.com" />
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <header className="site-header">
           <div className="container">
-            <nav>
-              <ul>
+            <nav className="header-navigation">
+              <ul className="nav-left">
                 <li className="logo-item"><a href="/" className="logo"><h1>Crown and Chrono</h1></a></li>
                 <li><a href="/tags/review">Reviews</a></li>
                 <li><a href="/tags/history">History</a></li>
                 <li><a href="/tags/commentary">Commentary</a></li>
                 <li><a href="/tags/classics">Classics</a></li>
                 <li><a href="https://watchesofamerica.com/collections/clearance" target="_blank" rel="noopener noreferrer">Deals</a></li>
+              </ul>
+              <ul className="nav-right">
+                <li><a href="/survey" className="red-survey-link">Take our Watch Survey!</a></li>
               </ul>
             </nav>
           </div>
